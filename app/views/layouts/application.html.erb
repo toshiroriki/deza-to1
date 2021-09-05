@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
+    <title class="text-success">NaganoCake</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/5c442e0d91.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body data-turbolinks="false">
+    <div id="wrapper">
+        <header>
+          <nav class="navbar navbar-expand-lg">
+          <div class="container">
+            <a class="navbar-left">
+            <%= link_to root_path do %>
+                 <%= image_tag "images.jpeg", :size =>'80x80' %>
+              <% end %>
+            </a>
+            <nav>
+              <ul class="navbar-nav ml-auto">
+                <!-- 会員でログインしている時 -->
+                <% if customer_signed_in? %>
+                  <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
+                  <li><%= link_to customers_my_page_path do %><i class="fas fa-user"></i>マイページ<% end %></li>
+                  <li><%= link_to items_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+                  <li><%= link_to cart_items_path do %><div class="icon-flex"><i class="icon-count text-center"></i></div><i class="fas fa-shopping-cart"></i>カート</i><% end %></li>
+                  <li><%= link_to destroy_customer_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
+                  <li><input name="search" placeholder="search　🔍"></li>
+                <!-- 管理者でログインしている時 -->
+                <% elsif admin_signed_in?%>
+                  <li><%= link_to ' 商品一覧', admin_items_path %></li>
+                  <li><%= link_to ' 会員一覧', admin_customers_path %></li>
+                  <li><%= link_to ' 注文履歴一覧', admin_path %></li>
+                  <li><%= link_to ' ジャンル一覧', admin_genres_path %></li>
+                  <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete %></li>
+                  <li><input name="search" placeholder="search　🔍"></li>
+                <!-- ログインしていない時 -->
+                <% else %>
+                  <li><%= link_to about_path do %><i class="fas fa-building"></i>About<% end %></li>
+                  <li><%= link_to items_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+                  <li><%= link_to new_customer_registration_path do %><i class="fas fa-user-plus"></i>新規登録<% end %></li>
+                  <li><%= link_to new_customer_session_path do %><i class="fas fa-sign-in-alt"></i>ログイン<% end %></li>
+                  <li><input name="search" placeholder="search　🔍"></li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+          </nav>
+        </header>
+
+        <main id="content">
+          <%= yield %>
+        </main>
+    </div>
   </body>
 </html>

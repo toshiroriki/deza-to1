@@ -1,0 +1,36 @@
+<div class="container takasa">
+
+  <h2 class="edit-title">商品編集</h2>
+
+  <%= form_for @item,url: {action: "update"} do |f| %>
+  <div class="row">
+    <div class="col-xs-4">
+      <label>商品画像</label>
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="col-xs-8">
+      <h4 class="edit-sukima">
+        <%= f.label :"商品名" ,class: "col-xs-3" %>
+        <%= f.text_field :name, class: "col-xs-8 " %>
+      </h4><br>
+      <h4 class="edit-sukima">
+        <%= f.label :"商品説明" ,class: "col-xs-3"%>
+        <%= f.text_area :introduction,size: "20*20", class: "col-xs-8" %>
+      </h4>
+      <h4 class="edit-sukima">
+        <%= f.label :"ジャンル" ,class: "col-xs-3 "%>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+      </h4>
+      <h4 class="edit-sukima">
+        <%= f.label :"税別価格" ,class: "col-xs-3"%>
+        <%= f.text_field :price, class: "col-xs-5"%>円<br>
+      </h4>
+      <h4 class="edit-sukima">
+        <%= f.label :"販売ステータス" ,class: "col-xs-3" %>
+        <%= f.select :is_active,{'販売中':true, '販売停止':false} ,class: "col-xs-8"%>
+      </h4>
+      <div class="text-right"><%= f.submit :変更を保存, class: "btn btn-primary" %><div>
+        <% end %>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,56 @@
+<div class="container takasa">
+
+  <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
+
+  <div class="row">
+    <%= form_for(@customer, url:admin_customer_path) do |f| %>
+    <div class="col-xs-10">
+      <div class="field">
+        <%= f.label :会員ID ,class: "col-xs-3"%>
+        <%= f.text_field :id, autofocus: true, autocomplete: "id"%>
+      </div><br>
+
+      <div class="field">
+        <%= f.label :氏名 ,class: "col-xs-3"%>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.label :フリガナ,class: "col-xs-3" %>
+        <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+        <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.label :郵便番号 ,class: "col-xs-3"%>
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code"%>
+      </div><br>
+      <div class="field">
+        <%= f.label :住所 ,class: "col-xs-3"%>
+        <%= f.text_field :address, autofocus: true, autocomplete: "address" ,size: "50"%>
+      </div><br>
+
+
+      <div class="field">
+        <%= f.label :電話番号 ,class: "col-xs-3"%>
+        <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number"%>
+      </div><br>
+
+      <div class="field">
+        <%= f.label :メールアドレス ,class: "col-xs-3"%>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email"%>
+      </div><br>
+      <!-- ラジオボタンの記述 -->
+      <div class="form-group col-xs-9">
+        <%= f.label :"会員ステータス", class: "col-sm-4 control-label" %>
+        　<%= f.radio_button :is_active, true %>
+        　<%= f.label :is_active, "退会済", {value: :true, style: "display: inline-block;"} %>
+        　<%= f.radio_button :is_active, false %>
+        　<%= f.label :is_active, "有効", {value: :false, style: "display: inline-block;"} %>
+      </div>
+
+      <div class="text-right"><%= f.submit "変更を保存する", class:"btn btn-primary" %></div>
+      <% end %>
+    </div>
+  </div>

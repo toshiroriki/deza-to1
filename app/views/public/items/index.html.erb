@@ -1,0 +1,24 @@
+<div class="container takasa">
+  <div class="row">
+
+
+    <div class="col-xs-1">
+    </div>
+
+  	<div class="col-xs-9">
+  	  <h2><i class="fas fa-cookie-bite"></i>商品一覧<span style="font-size:20px;">（全<%= @amount %>件）</span></h2><br>
+  	    <div class="row">
+  	      <% @items.each do |item| %>
+            <div class="box" style="float:left; margin-right:20px;">
+            <%= link_to item_path(item.id) do %> <!-- 画像をクリックしたら商品詳細画面へ遷移 -->
+              <%= attachment_image_tag item, :image, size: "170x170",  fallback: "images.jpeg"%><br>
+            <% end %>
+              <p><%= item.name %></p>
+              <p>¥<%= (item.price*1.1).floor %></p> <!-- 税込計算式/.floor => 浮動小数点数の切り捨てを行うためFloatクラスのfloorメソッドを使用 -->
+            </div>
+          <% end %>
+  	    </div>
+
+  	</div>
+  </div>
+</div>

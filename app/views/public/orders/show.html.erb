@@ -1,0 +1,65 @@
+<div class="container takasa">
+	<h2><i class="fas fa-box-open"></i>注文履歴詳細</h2><br>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>注文情報</p>
+			<table align="left" class="table table-bordered">
+				<tr>
+					<td>注文日</th>
+					<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+				</tr>
+				<tr>
+					<td>配送先</td>
+					<td>〒<%= @order.postal_code %><br><%= @order.address %><br><%= @order.name %></td>
+				</tr>
+				<tr>
+					<td>支払方法</td>
+					<td><%= @order.payment %></td>
+				</tr>
+				<tr>
+					<td>ステータス</td>
+					<td><%= @order.status %></td>
+				</tr>
+			</table>
+
+			<p>注文内容</p>
+				<table class="table table-bordered">
+					<tr>
+						<th>商品</th>
+						<th>単価（税込み)</th>
+						<th>個数</th>
+						<th>小計</th>
+					</tr>
+					<% @order_details.each do |order_detail| %>
+					<tr>
+						<td><%= order_detail.item.name %></td>
+						<td><%= order_detail.price %></td>
+						<td><%= order_detail.amount %></td>
+						<td><%= (order_detail.price*order_detail.amount) %>
+							<% @total_price += (order_detail.price*order_detail.amount) %>
+						</td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+			<div class="col-xs-6">
+				<div class="row">
+				  <br><p>請求情報</p>
+				  <table class="table table-bordered">
+					<tr>
+						<td>商品合計</td>
+						<th><%= @total_price %></th>
+					</tr>
+					<tr>
+						<td>配送料</td>
+						<th>800</th>
+					</tr>
+					<tr>
+						<td>ご請求額</td>
+						<th><%= @total_price + 800 %></th>
+					</tr>
+				  </table>
+		        </div>
+		</div>
+	</div>
+</div>

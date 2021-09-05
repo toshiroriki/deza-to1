@@ -1,0 +1,82 @@
+<div class="container takasa">
+
+  <h2><i class="fas fa-user-edit"></i>会員情報編集</h2><br>
+
+    <%= form_for (@customer), url:customers_path do |f| %>
+    <div class="row user_edit">
+
+      <div class="col-xs-2">
+        <%= f.label :"氏名" %>
+      </div>
+      <div class="col-xs-1">
+        <%= f.label :"（姓）" %>
+      </div>
+      <div class="col-xs-2">
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="col-xs-1">
+        <%= f.label :"（名）" %>
+      </div>
+      <div class="col-xs-2">
+        <%= f.text_field :first_name %>
+      </div>
+    </div>
+    <div class="row user_edit">
+      <div class="col-xs-2">
+        <%= f.label :"フリガナ" %>
+      </div>
+      <div class="col-xs-1">
+        <%= f.label :"（セイ）" %>
+      </div>
+      <div class="col-xs-2">
+        <%= f.text_field :last_name_kana %>
+      </div>
+      <div class="col-xs-1">
+        <%= f.label :"（メイ）" %>
+      </div>
+      <div class="col-xs-2">
+        <%= f.text_field :first_name_kana %>
+      </div>
+    </div>
+    <div class="row user_edit">
+      <div class="col-xs-3">
+        <%= f.label :郵便番号 %>
+      </div>
+      <div class="col-xs-3">
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+      </div>
+    </div>
+      <div class="row user_edit">
+      <div class="col-xs-3">
+        <%= f.label :住所 %>
+      </div>
+      <div class="col-xs-5">
+        <%= f.text_field :address, autofocus: true, autocomplete: "address", :size => "50"%>
+      </div>
+    </div>
+      <div class="row user_edit">
+      <div class="col-xs-3">
+        <%= f.label :"電話番号" %>
+      </div>
+      <div class="col-xs-3">
+        <%= f.text_field :telephone_number %>
+      </div>
+    </div>
+    <div class="row user_edit">
+        <div class="col-xs-3">
+            <%= f.label :"メールアドレス" %>
+        </div>
+        <div class="col-xs-3">
+            <%= f.email_field :email %>
+        </div>
+    </div>
+
+      <div class="col-xs-3">
+        <%= f.submit "編集内容を保存" ,class:"btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="col-xs-3">
+        <%=button_to "退会する", customers_is_active_path, method: :get, class: "btn btn-danger" %>
+      </div>
+    </div>
+</div>

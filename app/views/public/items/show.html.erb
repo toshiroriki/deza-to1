@@ -1,0 +1,29 @@
+
+<div class="container takasa">
+  <div class="row">
+
+
+  	<div class="col-xs-9">
+  	  <div class="row" style="margin-top: 50px;">
+  	  	<div style="float: left; margin: 15px 50px;">
+          <%= attachment_image_tag @item, :image, size: "300x300", fallback: "images.jpeg" %>
+        </div>
+  	  	<div style="width:400px; height:300px; float:left;">
+  	  	  <h3 style="color: black;"><%= @item.name %></h3><br>
+  	  	  <p><%= @item.introduction %></p>
+  	  	  <p class="price">¥<%= (@item.price*1.1).floor %><span style="font-size:12px;">（税込）</span></p>
+  	  	</div>
+  	  </div>
+      <div class="col-xs-7">
+      </div>
+      <div class="col-xs-5">
+      <strong class="error"><%= notice %></strong>
+        <%= form_for @cart_item, url: cart_items_path(@cart_item) do |f| %>
+        <%= f.hidden_field :item_id  , :value => @item.id%>
+        <%= f.number_field :amount , placeholder: "個数選択", min: 1, max: 20 %> <!-- f.selectでも可。placeholderで空欄時に個数選択を表示。選択数の最低値を設定するためにminを設定。 -->
+        <%= f.submit "カートに入れる" ,class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+  	</div>
+  </div>
+</div>

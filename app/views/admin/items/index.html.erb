@@ -1,0 +1,39 @@
+<div class="container takasa">
+
+  <h2>商品一覧</h2>
+
+  <div class="text-right index-new">
+    <%= link_to new_admin_item_path, data: {"turbolinks" => false} do %>
+      <button type="button" class="btn btn-success btn-success btn-circle btn-lg">＋</button>
+    <% end %>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr class="active">
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= item.genre.name %></td>
+        <td><% if item.is_active == true %>
+      					<p><i class="fas fa-bullseye red"></i>販売中</p>
+      				<% elsif item.is_active == false %>
+      					<p><i class="fas fa-bullseye blue"></i>販売停止中</p>
+      				<% end %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div>

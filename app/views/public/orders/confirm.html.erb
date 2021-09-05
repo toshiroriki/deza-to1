@@ -1,0 +1,64 @@
+<div class="container takasa">
+	<h2>注文情報確認</h2>
+	<%= form_for  @order,url: {action: 'create'} do |f| %>
+	<!-- テーブル -->
+	<div class="row">
+		<div class="col-xs-6">
+			<table align="left" class="table table-bordered">
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+				</tr>
+				<tbody>
+
+
+				<% @cart_items.each do |cart_item| %>
+				<% @total_price+= (cart_item.item.price*1.1*cart_item.amount).floor %>
+
+					<tr>
+						<td><%= cart_item.item.name %></td>
+							<td><%= (cart_item.item.price*1.1).floor %></td>
+							<td><%= cart_item.amount %></td>
+							<td><%= (cart_item.item.price*1.1*cart_item.amount).floor %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<table class="table table-bordered">
+						<tr>
+							<th>送料</th>
+							<th>800</th>
+						</tr>
+						<tbody>
+							<tr>
+								<th>商品合計</th>
+								<td><%= @total_price%></td>
+							</tr>
+							<tr>
+								<th>請求額</th>
+								<td><%= @total_price+800%></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div><br>
+		<p><strong>支払方法 </strong><%= @order.payment %></p><br>
+
+		<p><strong>お届け先 </strong><%= @order.postal_code %> <%= @order.address %> <%= @order.name %></p><br>
+		<%= f.hidden_field :payment,:value => @order.payment_before_type_cast %>
+		<%= f.hidden_field :postage,:value => 800 %>
+		<%= f.hidden_field :address,:value => @order.address %>
+		<%= f.hidden_field :postal_code,:value => @order.postal_code %>
+		<%= f.hidden_field :name,:value => @order.name %>
+		<%= f.hidden_field :total_price,:value => @total_price %><br><br>
+		<div class="text-center">
+			<%= f.submit "注文を確定する", class: "btn btn-success text-cenrer btn-lg" %>
+		</div>
+		<% end %>
+	</div>

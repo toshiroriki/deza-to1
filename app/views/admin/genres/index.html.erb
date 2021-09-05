@@ -1,0 +1,32 @@
+<div class="container takasa ">
+  <div class="row ">
+
+    <h2>ジャンル一覧・追加</h2><br>
+
+    <%= form_for @genre, url: admin_genres_path do |f| %>
+    <div class="field row ">
+      <lavel>ジャンル名</lavel>
+      <%= f.text_field :name %>
+      <%= f.submit "新規登録", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+    <br>
+    <!-- ジャンル一覧 -->
+    <table class = "table table-hover">
+      <thead>
+        <tr class="active">
+          <th>ジャンル</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @genres.each do |genre| %>
+        <tr>
+          <td class="text-left"><%= genre.name%></td>
+            <td class="genre-td"><%= link_to "編集する", edit_admin_genre_path(genre), class: "glyphicon glyphicon-pencil btn btn-success" %></td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

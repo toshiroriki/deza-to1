@@ -1,0 +1,42 @@
+<div class="container takasa">
+   <div class="col-xs-9">
+      <!-- 画像背景 -->
+  		<div class="bg_top">
+        <!-- 白背景/サイト説明文 -->
+  			<div class="bg_top2">
+  			  <p class="font-text">
+  			  	ようこそ、NaganoCakeへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </p>
+  			</div>
+  		</div>
+      <!-- 新着商品表示 -->
+      <br>
+  		<h4 class="recommendation"><i class="fas fa-crown"></i> 新着商品 <i class="fas fa-crown"></i></h4><br>
+  		<div class="row">
+
+
+        <div id="multiple-items">
+        <% @items.each do |item| %>
+          <div class="recommendation-items">
+            <%= link_to item_path(item.id) do %> <!-- 画像をクリックしたら商品詳細画面へ遷移 -->
+              <%= attachment_image_tag item, :image, size: "150x150",  fallback: "images.jpeg"%><br>
+            <% end %>
+            <p><%= item.name %></p>
+            <p>¥<%= (item.price*1.1).floor %></p> <!-- 税込計算式/.floor => 浮動小数点数の切り捨てを行うためFloatクラスのfloorメソッドを使用 -->
+          </div>
+        <% end %>
+　　　　　</div>
+        </div>
+      </div>
+  	</div>
+
+  	<div class="row">
+  	  <div class="col-xs-9"></div>
+  	  <div class="col-xs-2">
+  	    <p><%= link_to "全ての商品を見る＞", items_path %></p>
+  	  </div>
+    </div>
+  </div>
