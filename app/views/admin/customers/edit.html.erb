@@ -44,10 +44,10 @@
       <!-- ラジオボタンの記述 -->
       <div class="form-group col-xs-9">
         <%= f.label :"会員ステータス", class: "col-sm-4 control-label" %>
-        　<%= f.radio_button :is_active, true %>
-        　<%= f.label :is_active, "退会済", {value: :true, style: "display: inline-block;"} %>
-        　<%= f.radio_button :is_active, false %>
-        　<%= f.label :is_active, "有効", {value: :false, style: "display: inline-block;"} %>
+        　<%= f.radio_button :is_active, "Invalid" %>
+        　<%= f.label :is_active, "退会済", {value: "Invalid", style: "display: inline-block;"} %>
+        　<%= f.radio_button :is_active, "Available" %>
+        　<%= f.label :is_active, "有効", {value: "Available", style: "display: inline-block;"} %>
       </div>
 
       <div class="text-right"><%= f.submit "変更を保存する", class:"btn btn-primary" %></div>

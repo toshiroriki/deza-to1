@@ -22,7 +22,7 @@
       <tr>
         <td>
           <%= link_to item_path(cart_item.item_id) do %>
-            <%= attachment_image_tag cart_item.item, :image, size: "50x50", fallback: "images.jpeg"%><%= cart_item.item.name %>
+            <%= attachment_image_tag cart_item.item, :image, size: "50x50", fallback: "noimage.png"%><%= cart_item.item.name %>
           <% end %>
         </td>
         <td><%= (cart_item.item.price*1.1).floor %></td>
