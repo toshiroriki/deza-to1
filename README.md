@@ -51,10 +51,6 @@ https://docs.google.com/spreadsheets/d/15qq_5FMgFS9zcPL38GUOqPlXEIq4WI8A5gUhiZTX
 - IDE：Cloud9
 
 ## 使用素材
-- https://free-materials.com/tag/%E3%82%B1%E3%83%BC%E3%82%AD/
-
-https://free-materials.com/%e3%83%86%e3%82%a3%e3%83%a9%e3%83%9f%e3%82%b906/
+- https://illust8.com/contents/3656
 
 noimage.png
-
-友人や家族へのプレゼントなど、注文者の住所以外にも商品を発送できる。
