@@ -6,7 +6,7 @@
 
 
       <%= form_with(model: @order, local: true, url: orders_confirm_path, method: :post) do |f| %>
-      <div class="field row" style="margin-left:20px; ">
+      <div class="field" style="margin-left:20px; ">
         <h4><strong>支払い方法</strong></h4>
         <label style="margin-left: 60px;"><%= f.radio_button :payment, 1, checked: "checked"%> クレジットカード </label><br>
         <label style="margin-left: 60px;"><%= f.radio_button :payment, 0 %> 銀行振込</label>
@@ -31,18 +31,24 @@
 
 <!-- 新規届け先 -->
         <label style="margin-left: 60px;"><%= f.radio_button :address_number,3 %> 新しいお届け先</label><br>
-        <div style="display: flex; margin-left:15% ;">
-          <div  style="display: flex flex-direction: column;  flex-wrap: wrap;  width: 60px;">
-            <%= f.label :"郵便番号"%><br><br>
-            <%= f.label :"住    所"%><br><br>
-            <%= f.label :"宛    名"%><br><br>
+        <div class="row" style="margin-left: 60px;">
+          <div class="col-md-5"><%= f.label :"郵便番号"%></div>
+          <div class="col-md-7"><%= f.text_field :postal_code  %></div>
+        </div>
+        <div class="row" style="margin-left: 60px;">
+          <div class="col-md-5"><%= f.label :"住    所"%></div>
+          <div class="col-md-7"><%= f.text_field :address  %></div>
+        </div>
+        <div class="row" style="margin-left: 60px;">
+          <div class="col-md-5"><%= f.label :"宛    名"%></div>
+          <div class="col-md-7"><%= f.text_field :name  %></div>
+        </div>
+
+        <div class="row"style="margin-left: 60px;">
+          <div class="offset-md-5 col-md-7">
+            <%= f.submit "確認画面へ進む", class: "btn btn-primary text-cenrer" %>
           </div>
-          <div style=" margin-left:20px; ">
-            <%= f.text_field :postal_code  %><br><br>
-            <%= f.text_field :address ,size: "60" %><br><br>
-            <%= f.text_field :name %><br><br>
-           <%= f.submit "確認画面へ進む", class: "btn btn-primary text-cenrer" %>
-          </div>
+        </div>
       <!-- end -->
           <% end %>
         </div>
